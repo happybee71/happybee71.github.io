@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>happybee71 个人主页</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
+        body{
+            width:100vw;height:100vh;
+            background:#7377ed;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+        .card{
+            width:360px;
+            padding:40px 30px;
+            background:#fff;
+            border-radius:20px;
+            box-shadow:0 8px 30px rgba(0,0,0,0.12);
+            text-align:center;
+        }
+        .avatar{
+            width:90px;height:90px;
+            border-radius:50%;
+            background:linear-gradient(135deg,#8074e8,#b088f0);
+            margin:0 auto 20px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:40px;
+        }
+        h1{
+            font-size:26px;
+            color:#222;
+            margin-bottom:16px;
+        }
+        .desc{
+            color:#555;
+            line-height:1.8;
+            margin-bottom:30px;
+        }
+        .btns{
+            display:flex;
+            gap:14px;
+            justify-content:center;
+        }
+        button{
+            padding:12px 26px;
+            border:none;
+            border-radius:30px;
+            font-size:15px;
+            cursor:pointer;
+            color:#fff;
+            transition: opacity 0.2s;
+        }
+        button:hover{opacity:0.85;}
+        .btn1{background:#7368e6;}
+        .btn2{background:#39a857;}
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="avatar">🐝</div>
+        <h1>你好，我是happybee71</h1>
+        <div class="desc">
+            欢迎来到我的个人主页<br>
+            热爱学习，探索趣味编程<br>
+            喜欢Minecraft、各类游戏开发
+        </div>
+        <div class="btns">
+            <!-- 编程猫按钮：新标签打开个人主页 -->
+            <button class="btn1" onclick="openCodemao()">编程猫主页</button>
+            <!-- MC按钮：触发密码校验 -->
+            <button class="btn2" onclick="checkPwd()">MC</button>
+        </div>
+    </div>
+
+    <script>
+        // 编程猫页面跳转
+        function openCodemao(){
+            window.open('https://shequ.codemao.cn/user/10358868/','_blank');
+        }
+
+        // MC密码校验配置
+        const correctPassword = "bee0039"; // 可自行修改密码
+        const maxWrongTimes = 3; // 最多输错3次锁定
+        let wrongCount = 0;
+
+        function checkPwd(){
+            // 输错达到上限直接拦截
+            if(wrongCount >= maxWrongTimes){
+                alert(`已连续输错${maxWrongTimes}次，暂时无法访问！`);
+                return;
+            }
+            let inputPwd = prompt("请输入访问MC页面的密码：");
+            // 用户点击取消输入
+            if(inputPwd === null) return;
+
+            if(inputPwd === correctPassword){
+                // 密码正确，重置错误计数并跳转
+                wrongCount = 0;
+                window.open('https://mcjs.cc/','_blank');
+            }else{
+                wrongCount++;
+                const remain = maxWrongTimes - wrongCount;
+                alert(`密码错误！剩余${remain}次机会`);
+            }
+        }
+    </script>
+</body>
+</html>
